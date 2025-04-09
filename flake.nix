@@ -74,8 +74,9 @@
                   bsdgames
                   coreutils
                   extra
-                  gnused
                   gnugrep
+                  gnused
+                  gnutar
                   guile
                   htop
                   jq
