@@ -95,7 +95,11 @@
                   zip
                   zulu
                 ];
-                persistenceTools = with pkgs; [ redis ];
+                persistenceTools = with pkgs; [
+                  litecli
+                  pgcli
+                  redis 
+                ];
                 binaryTools = with pkgs; [ strace ];
                 dockerEnv = with pkgs; [
                   dockerTools.usrBinEnv
