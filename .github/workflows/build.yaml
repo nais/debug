@@ -62,7 +62,7 @@ jobs:
       - name: Install nix2sbom
         uses: EricCrosson/install-github-release-binary@2e81f4af531bbe08af1e153c8e0e2ccf8f08504e # v2.5.20
         with:
-          targets: louib/nix2sbom/nix2sbom@v2.4.5
+          targets: louib/nix2sbom/nix2sbom@v2.8.3
 
       - name: Generate the SPDX manifest
         run: |
