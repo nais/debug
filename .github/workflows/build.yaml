@@ -66,5 +66,5 @@ jobs:
 
       - name: Generate the SPDX manifest
         run: |
-          nix2sbom .#  > sbom.json
+          nix2sbom "$(readlink -f result-container)" > sbom.json
           cat sbom.json
