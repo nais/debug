@@ -65,6 +65,7 @@ jobs:
           targets: louib/nix2sbom/nix2sbom@v2.8.3
 
       - name: Generate the SPDX manifest
+        continue-on-error: true
         run: |
           nix2sbom "$(readlink -f result-container)" > sbom.json
           cat sbom.json
