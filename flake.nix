@@ -37,7 +37,6 @@
                 You have an unsettling feeling that you’ve been here before.
                 You see you have curl and openssl, there's a heap of binaries in /bin.
                 There's a door to the west
-
               '';
               profile = pkgs.writeTextDir "/etc/bashrc" ''
                 if [ -f /etc/motd ]; then
