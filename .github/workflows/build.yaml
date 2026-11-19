@@ -23,14 +23,21 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v22
 
+      - name: Check formatting
+        run: nix fmt -- --fail-on-change
+
       - name: Build Containers
         id: build-containers
         shell: bash
         run: |
           nix build --out-link result-container && docker load < result-container
 
+      - name: Test Java attach without shared volumes
+        run: bash tests/java-attach.sh
+
       - id: "auth"
         name: "Authenticate to Google Cloud"
+        if: github.ref == 'refs/heads/main'
         uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ secrets.NAIS_IO_WORKLOAD_IDENTITY_PROVIDER }}
@@ -47,6 +54,7 @@ jobs:
 
       - name: "Login to registry"
         id: login-to-registry
+        if: github.ref == 'refs/heads/main'
         uses: docker/login-action@v4
         with:
           registry: "europe-north1-docker.pkg.dev"
@@ -55,6 +63,7 @@ jobs:
 
       - name: Push image to registry
         id: push
+        if: github.ref == 'refs/heads/main'
         shell: bash
         run: |
           docker push europe-north1-docker.pkg.dev/nais-io/nais/images/${{env.NAME}}:latest
